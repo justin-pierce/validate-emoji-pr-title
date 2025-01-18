@@ -1,7 +1,7 @@
 import { info, setFailed, getInput } from "@actions/core";
 import { Context } from "@actions/github/lib/context";
 import * as fs from 'fs';
-import toml from '@iarna/toml';
+import toml, {JsonMap} from '@iarna/toml';
 
 
 export const run = (context: Context) => {
@@ -33,10 +33,10 @@ export const run = (context: Context) => {
   const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
   const parsedData = toml.parse(tomlContent);
 
-  const majorTags = parsedData?.tool;
+  const parsedString = JSON.stringify(parsedData)
 
-  info(`raw TOML: ${tomlContent}`);
-  info(`major_tags: "${majorTags}"`);
+  // info(`raw TOML: ${tomlContent}`);
+  info(`parsedString: "${parsedString}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));
   const helpMessage = getInput("helpMessage");

@@ -116,9 +116,9 @@ const run = (context) => {
     // ]
     const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
     const parsedData = toml_1.default.parse(tomlContent);
-    const majorTags = parsedData === null || parsedData === void 0 ? void 0 : parsedData.tool;
-    (0, core_1.info)(`raw TOML: ${tomlContent}`);
-    (0, core_1.info)(`major_tags: "${majorTags}"`);
+    const parsedString = JSON.stringify(parsedData);
+    // info(`raw TOML: ${tomlContent}`);
+    (0, core_1.info)(`parsedString: "${parsedString}"`);
     const regex = RegExp((0, core_1.getInput)("regexp"), (0, core_1.getInput)("flags"));
     const helpMessage = (0, core_1.getInput)("helpMessage");
     if (!regex.test(pullRequestTitle)) {

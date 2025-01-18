@@ -12,7 +12,7 @@ export const run = (context: Context) => {
 
   const pullRequestTitle = context?.payload?.pull_request?.title;
 
-  info(`Pull Request title: "${pullRequestTitle}"`);
+  info(`Pull Request title ts: "${pullRequestTitle}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));
   const helpMessage = getInput("helpMessage");

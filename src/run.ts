@@ -48,7 +48,9 @@ export const run = (context: Context) => {
 
   info(`prFirstChar: "${prFirstChar}"`);
 
-  const isValid: boolean = allTags.includes(prFirstChar as never);
+  // const isValid: boolean = allTags.includes(prFirstChar as never);
+
+  const isValid: boolean = pullRequestTitle.startsWith("👷");
 
   info(`isValid: "${isValid}"`);
 

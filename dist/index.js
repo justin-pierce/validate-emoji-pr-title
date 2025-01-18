@@ -126,6 +126,7 @@ const run = (context) => {
     const prFirstChar = pullRequestTitle.substring(0, 1);
     (0, core_1.info)(`prFirstChar: "${prFirstChar}"`);
     const splitTitle = pullRequestTitle.split(" ");
+    (0, core_1.info)(`first element: "${splitTitle[0]}"`);
     const isValid = allTags.includes(splitTitle[0]);
     // const isValid: boolean = pullRequestTitle.startsWith("👷");
     (0, core_1.info)(`isValid: "${isValid}"`);

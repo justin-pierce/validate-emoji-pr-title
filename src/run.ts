@@ -50,6 +50,8 @@ export const run = (context: Context) => {
 
   const splitTitle: string[] = pullRequestTitle.split(" ");
 
+  info(`first element: "${splitTitle[0]}"`);
+
   const isValid: boolean = allTags.includes(splitTitle[0] as never);
 
   // const isValid: boolean = pullRequestTitle.startsWith("👷");

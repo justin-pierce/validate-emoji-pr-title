@@ -18,7 +18,7 @@ export const run = (context: Context) => {
   info(`Pull Request title ts: "${pullRequestTitle}"`);
 
 
-  const tomlContent = fs.readFileSync('config.toml', 'utf-8');
+  const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
   const parsedData = toml.parse(tomlContent);
 
   info(`TOML: "${parsedData}"`);

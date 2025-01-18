@@ -21,6 +21,7 @@ export const run = (context: Context) => {
   const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
   const parsedData = toml.parse(tomlContent);
 
+  info(`raw TOML: ${tomlContent}`);
   info(`TOML: "${parsedData}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));

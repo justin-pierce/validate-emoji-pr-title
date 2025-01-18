@@ -105,6 +105,7 @@ const run = (context) => {
     (0, core_1.info)(`Pull Request title ts: "${pullRequestTitle}"`);
     const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
     const parsedData = toml_1.default.parse(tomlContent);
+    (0, core_1.info)(`raw TOML: ${tomlContent}`);
     (0, core_1.info)(`TOML: "${parsedData}"`);
     const regex = RegExp((0, core_1.getInput)("regexp"), (0, core_1.getInput)("flags"));
     const helpMessage = (0, core_1.getInput)("helpMessage");

@@ -1,5 +1,8 @@
 import { info, setFailed, getInput } from "@actions/core";
 import { Context } from "@actions/github/lib/context";
+import * as fs from 'fs';
+import toml from '@iarna/toml';
+
 
 export const run = (context: Context) => {
   const { eventName } = context;
@@ -13,6 +16,12 @@ export const run = (context: Context) => {
   const pullRequestTitle = context?.payload?.pull_request?.title;
 
   info(`Pull Request title ts: "${pullRequestTitle}"`);
+
+
+  const tomlContent = fs.readFileSync('config.toml', 'utf-8');
+  const parsedData = toml.parse(tomlContent);
+
+  info(`TOML: "${parsedData}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));
   const helpMessage = getInput("helpMessage");

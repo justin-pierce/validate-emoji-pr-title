@@ -54,7 +54,7 @@ const run = (context) => {
         return;
     }
     const pullRequestTitle = (_b = (_a = context === null || context === void 0 ? void 0 : context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.title;
-    (0, core_1.info)(`Pull Request title: "${pullRequestTitle}"`);
+    (0, core_1.info)(`Pull Request title dist: "${pullRequestTitle}"`);
     const regex = RegExp((0, core_1.getInput)("regexp"), (0, core_1.getInput)("flags"));
     const helpMessage = (0, core_1.getInput)("helpMessage");
     if (!regex.test(pullRequestTitle)) {

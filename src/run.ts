@@ -17,12 +17,26 @@ export const run = (context: Context) => {
 
   info(`Pull Request title ts: "${pullRequestTitle}"`);
 
+  // [tool.semantic_release.commit_parser_options]
+  // major_tags = ["🚨"]
+  // minor_tags = [
+  //   "✨"
+  // ]
+  // patch_tags = [
+  //   "🐛", "🏎", "🔒", "🧼"
+  // ]
+  // non_triggering_tags = [
+  //   "👷", "📝", "♻️", "🧪"
+  // ]
+
 
   const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
   const parsedData = toml.parse(tomlContent);
 
+  const majorTags = parsedData?.tool;
+
   info(`raw TOML: ${tomlContent}`);
-  info(`TOML: "${parsedData}"`);
+  info(`major_tags: "${majorTags}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));
   const helpMessage = getInput("helpMessage");

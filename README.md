@@ -19,6 +19,8 @@
 
 ## Usage
 
+asdf
+
 This action allows you to include a title check of a pull request automatically. This action only works on `pull_request` events.
 
 To use it, add the following steps in your workflow:

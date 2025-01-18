@@ -16,7 +16,7 @@ inputs:
     default: ""
 runs:
   using: "node16"
-  main: "dist/index.js"
+  main: "disty/index.js"
 branding:
   icon: "type"
   color: "gray-dark"

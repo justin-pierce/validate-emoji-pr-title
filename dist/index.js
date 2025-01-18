@@ -123,21 +123,12 @@ const run = (context) => {
     const otherTags = tagParent.non_triggering_tags;
     const allTags = [...majorTags, ...minorTags, ...patchTags, ...otherTags];
     (0, core_1.info)(`allTags: "${allTags}"`);
-    // const prFirstChar: string = Array.from(pullRequestTitle)[0];
     const prFirstChar = pullRequestTitle.substring(0, 1);
     (0, core_1.info)(`prFirstChar: "${prFirstChar}"`);
     const isValid = allTags.includes(prFirstChar);
-    // info(`raw TOML: ${tomlContent}`);
     (0, core_1.info)(`isValid: "${isValid}"`);
-    const regex = RegExp((0, core_1.getInput)("regexp"), (0, core_1.getInput)("flags"));
-    const helpMessage = (0, core_1.getInput)("helpMessage");
-    if (!regex.test(pullRequestTitle)) {
-        let message = `Pull Request title "${pullRequestTitle}" failed to pass match regexp - ${regex}
-`;
-        if (helpMessage) {
-            message = message.concat(helpMessage);
-        }
-        (0, core_1.setFailed)(message);
+    if (!isValid) {
+        (0, core_1.setFailed)(`Pull Request title "${pullRequestTitle}" failed to start with a valid emoji: ${allTags}`);
     }
 };
 exports.run = run;

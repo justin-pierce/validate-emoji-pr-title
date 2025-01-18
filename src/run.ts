@@ -44,26 +44,15 @@ export const run = (context: Context) => {
 
   info(`allTags: "${allTags}"`);
 
-  // const prFirstChar: string = Array.from(pullRequestTitle)[0];
   const prFirstChar: string = pullRequestTitle.substring(0, 1);
 
   info(`prFirstChar: "${prFirstChar}"`);
 
   const isValid: boolean = allTags.includes(prFirstChar as never);
 
-
-  // info(`raw TOML: ${tomlContent}`);
   info(`isValid: "${isValid}"`);
 
-  const regex = RegExp(getInput("regexp"), getInput("flags"));
-  const helpMessage = getInput("helpMessage");
-  if (!regex.test(pullRequestTitle)) {
-    let message = `Pull Request title "${pullRequestTitle}" failed to pass match regexp - ${regex}
-`;
-    if (helpMessage) {
-      message = message.concat(helpMessage);
-    }
-
-    setFailed(message);
+  if (!isValid) {
+    setFailed(`Pull Request title "${pullRequestTitle}" failed to start with a valid emoji: ${allTags}`);
   }
 };

@@ -42,10 +42,18 @@ export const run = (context: Context) => {
 
   const allTags = [...majorTags, ...minorTags, ...patchTags, ...otherTags];
 
+  info(`allTags: "${allTags}"`);
+
+  // const prFirstChar: string = Array.from(pullRequestTitle)[0];
+  const prFirstChar: string = pullRequestTitle.substring(0, 1);
+
+  info(`prFirstChar: "${prFirstChar}"`);
+
+  const isValid: boolean = allTags.includes(prFirstChar as never);
 
 
   // info(`raw TOML: ${tomlContent}`);
-  info(`allTags: "${allTags}"`);
+  info(`isValid: "${isValid}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));
   const helpMessage = getInput("helpMessage");

@@ -122,8 +122,13 @@ const run = (context) => {
     const patchTags = tagParent.patch_tags;
     const otherTags = tagParent.non_triggering_tags;
     const allTags = [...majorTags, ...minorTags, ...patchTags, ...otherTags];
-    // info(`raw TOML: ${tomlContent}`);
     (0, core_1.info)(`allTags: "${allTags}"`);
+    // const prFirstChar: string = Array.from(pullRequestTitle)[0];
+    const prFirstChar = pullRequestTitle.substring(0, 1);
+    (0, core_1.info)(`prFirstChar: "${prFirstChar}"`);
+    const isValid = allTags.includes(prFirstChar);
+    // info(`raw TOML: ${tomlContent}`);
+    (0, core_1.info)(`isValid: "${isValid}"`);
     const regex = RegExp((0, core_1.getInput)("regexp"), (0, core_1.getInput)("flags"));
     const helpMessage = (0, core_1.getInput)("helpMessage");
     if (!regex.test(pullRequestTitle)) {

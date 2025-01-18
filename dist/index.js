@@ -125,10 +125,12 @@ const run = (context) => {
     (0, core_1.info)(`allTags: "${allTags}"`);
     const prFirstChar = pullRequestTitle.substring(0, 1);
     (0, core_1.info)(`prFirstChar: "${prFirstChar}"`);
-    const isValid = allTags.includes(prFirstChar);
+    const splitTitle = pullRequestTitle.split(" ");
+    const isValid = allTags.includes(splitTitle[0]);
+    // const isValid: boolean = pullRequestTitle.startsWith("👷");
     (0, core_1.info)(`isValid: "${isValid}"`);
     if (!isValid) {
-        (0, core_1.setFailed)(`Pull Request title "${pullRequestTitle}" failed to start with a valid emoji: ${allTags}`);
+        (0, core_1.setFailed)(`Pull Request title "${pullRequestTitle}" starts with "${splitTitle[0]}" instead of a valid emoji with space: ${allTags}`);
     }
 };
 exports.run = run;

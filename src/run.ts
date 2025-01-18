@@ -48,13 +48,15 @@ export const run = (context: Context) => {
 
   info(`prFirstChar: "${prFirstChar}"`);
 
-  // const isValid: boolean = allTags.includes(prFirstChar as never);
+  const splitTitle: string[] = pullRequestTitle.split(" ");
 
-  const isValid: boolean = pullRequestTitle.startsWith("👷");
+  const isValid: boolean = allTags.includes(splitTitle[0] as never);
+
+  // const isValid: boolean = pullRequestTitle.startsWith("👷");
 
   info(`isValid: "${isValid}"`);
 
   if (!isValid) {
-    setFailed(`Pull Request title "${pullRequestTitle}" failed to start with a valid emoji: ${allTags}`);
+    setFailed(`Pull Request title "${pullRequestTitle}" starts with "${splitTitle[0]}" instead of a valid emoji with space: ${allTags}`);
   }
 };

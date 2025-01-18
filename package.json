@@ -12,6 +12,7 @@
   "private": true,
   "main": "lib/index.js",
   "scripts": {
+    "fuck": "tsc && ncc build --source-map --license licenses.txt",
     "build": "tsc",
     "lint": "eslint .",
     "format": "prettier --write --ignore-unknown '**/*'",

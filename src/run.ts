@@ -31,12 +31,12 @@ export const run = (context: Context) => {
 
 
   const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
-  const parsedData = toml.parse(tomlContent);
+  const parsedData: any = toml.parse(tomlContent);
 
-  const parsedString = JSON.stringify(parsedData)
+  const majorTags: [] = parsedData.tool.semantic_release.commit_parser_options.major_tags;
 
   // info(`raw TOML: ${tomlContent}`);
-  info(`parsedString: "${parsedString}"`);
+  info(`majorTags: "${majorTags}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));
   const helpMessage = getInput("helpMessage");

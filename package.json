@@ -12,6 +12,7 @@
   "private": true,
   "main": "lib/index.js",
   "scripts": {
+    "fuck": "tsc && ncc build --source-map --license licenses.txt",
     "build": "tsc",
     "lint": "eslint .",
     "format": "prettier --write --ignore-unknown '**/*'",
@@ -22,7 +23,8 @@
   },
   "dependencies": {
     "@actions/core": "^1.4.0",
-    "@actions/github": "^5.0.1"
+    "@actions/github": "^5.0.1",
+    "@iarna/toml": "^2.2.5"
   },
   "devDependencies": {
     "@types/jest": "^29.0.3",

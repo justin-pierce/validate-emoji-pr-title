@@ -33,10 +33,19 @@ export const run = (context: Context) => {
   const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
   const parsedData: any = toml.parse(tomlContent);
 
-  const majorTags: [] = parsedData.tool.semantic_release.commit_parser_options.major_tags;
+  const tagParent = parsedData.tool.semantic_release.commit_parser_options;
+
+  const majorTags: [] = tagParent.major_tags;
+  const minorTags: [] = tagParent.minor_tags;
+  const patchTags: [] = tagParent.patch_tags;
+  const otherTags: [] = tagParent.non_triggering_tags;
+
+  const allTags = [...majorTags, ...minorTags, ...patchTags, ...otherTags];
+
+
 
   // info(`raw TOML: ${tomlContent}`);
-  info(`majorTags: "${majorTags}"`);
+  info(`allTags: "${allTags}"`);
 
   const regex = RegExp(getInput("regexp"), getInput("flags"));
   const helpMessage = getInput("helpMessage");

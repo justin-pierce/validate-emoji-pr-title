@@ -103,17 +103,6 @@ const run = (context) => {
     }
     const pullRequestTitle = (_b = (_a = context === null || context === void 0 ? void 0 : context.payload) === null || _a === void 0 ? void 0 : _a.pull_request) === null || _b === void 0 ? void 0 : _b.title;
     (0, core_1.info)(`Pull Request title ts: "${pullRequestTitle}"`);
-    // [tool.semantic_release.commit_parser_options]
-    // major_tags = ["🚨"]
-    // minor_tags = [
-    //   "✨"
-    // ]
-    // patch_tags = [
-    //   "🐛", "🏎", "🔒", "🧼"
-    // ]
-    // non_triggering_tags = [
-    //   "👷", "📝", "♻️", "🧪"
-    // ]
     const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
     const parsedData = toml_1.default.parse(tomlContent);
     const tagParent = parsedData.tool.semantic_release.commit_parser_options;
@@ -123,12 +112,9 @@ const run = (context) => {
     const otherTags = tagParent.non_triggering_tags;
     const allTags = [...majorTags, ...minorTags, ...patchTags, ...otherTags];
     (0, core_1.info)(`allTags: "${allTags}"`);
-    const prFirstChar = pullRequestTitle.substring(0, 1);
-    (0, core_1.info)(`prFirstChar: "${prFirstChar}"`);
     const splitTitle = pullRequestTitle.split(" ");
     (0, core_1.info)(`first element: "${splitTitle[0]}"`);
     const isValid = allTags.includes(splitTitle[0]);
-    // const isValid: boolean = pullRequestTitle.startsWith("👷");
     (0, core_1.info)(`isValid: "${isValid}"`);
     if (!isValid) {
         (0, core_1.setFailed)(`Pull Request title "${pullRequestTitle}" starts with "${splitTitle[0]}" instead of a valid emoji with space: ${allTags}`);

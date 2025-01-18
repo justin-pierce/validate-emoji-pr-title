@@ -17,19 +17,6 @@ export const run = (context: Context) => {
 
   info(`Pull Request title ts: "${pullRequestTitle}"`);
 
-  // [tool.semantic_release.commit_parser_options]
-  // major_tags = ["🚨"]
-  // minor_tags = [
-  //   "✨"
-  // ]
-  // patch_tags = [
-  //   "🐛", "🏎", "🔒", "🧼"
-  // ]
-  // non_triggering_tags = [
-  //   "👷", "📝", "♻️", "🧪"
-  // ]
-
-
   const tomlContent = fs.readFileSync('pyproject.toml', 'utf-8');
   const parsedData: any = toml.parse(tomlContent);
 
@@ -44,17 +31,11 @@ export const run = (context: Context) => {
 
   info(`allTags: "${allTags}"`);
 
-  const prFirstChar: string = pullRequestTitle.substring(0, 1);
-
-  info(`prFirstChar: "${prFirstChar}"`);
-
   const splitTitle: string[] = pullRequestTitle.split(" ");
 
   info(`first element: "${splitTitle[0]}"`);
 
   const isValid: boolean = allTags.includes(splitTitle[0] as never);
-
-  // const isValid: boolean = pullRequestTitle.startsWith("👷");
 
   info(`isValid: "${isValid}"`);
 
